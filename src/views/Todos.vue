@@ -69,9 +69,17 @@ export default {
   },
   methods: {
     onEnter() {
-      let uniqueId = Math.floor(Math.random() * 9999) + 1000 + Date.now();
-      this.todoLists.push({ id: uniqueId, item: this.userInput, input: false });
-      this.userInput = "";
+      if (this.userInput) {
+        let uniqueId = Math.floor(Math.random() * 9999) + 1000 + Date.now();
+        this.todoLists.push({
+          id: uniqueId,
+          item: this.userInput,
+          input: false
+        });
+        this.userInput = "";
+      } else {
+        return;
+      }
     },
     deleteItem(id) {
       this.todoLists = this.todoLists.filter(list => {
